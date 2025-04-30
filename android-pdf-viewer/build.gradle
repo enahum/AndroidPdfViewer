@@ -5,7 +5,7 @@ plugins {
 
 ext {
     PUBLISH_GROUP_ID = 'com.github.enahum'
-    PUBLISH_VERSION = "3.2.0-pdfFile.4"
+    PUBLISH_VERSION = "3.2.0-pdfFile.5"
     PUBLISH_ARTIFACT_ID = 'android-pdf-viewer'
 }
 
