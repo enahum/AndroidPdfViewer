@@ -1570,4 +1570,8 @@ public class PDFView extends RelativeLayout {
             }
         }
     }
+
+    public PdfFile getPdfFile() {
+        return pdfFile;
+    }
 }

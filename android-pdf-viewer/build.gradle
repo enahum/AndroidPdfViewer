@@ -19,9 +19,12 @@ dependencies {
 
 // Maven Publishing
 ext {
-    PUBLISH_GROUP_ID = 'com.github.mhiew'
-    PUBLISH_VERSION = "${rootProject.tools.versionName}"
+    PUBLISH_GROUP_ID = 'com.github.enahum'
+    PUBLISH_VERSION = "3.2.0-pdfFile"
     PUBLISH_ARTIFACT_ID = 'android-pdf-viewer'
 }
 
-apply from: "${rootProject.projectDir}/android-pdf-viewer/publish-mavencentral.gradle"
+afterEvaluate {
+    project.group = PUBLISH_GROUP_ID
+    project.version = PUBLISH_VERSION
+}
