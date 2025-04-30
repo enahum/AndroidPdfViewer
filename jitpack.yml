@@ -1,2 +1,9 @@
 jdk:
   - openjdk11
+
+jdk:
+  - openjdk17
+
+install:
+  - ./gradlew :android-pdf-viewer:assembleRelease
+  - ./gradlew :android-pdf-viewer:publishToMavenLocal
