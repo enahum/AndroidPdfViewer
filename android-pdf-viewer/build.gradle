@@ -1,4 +1,13 @@
-apply plugin: 'com.android.library'
+plugins {
+      id 'com.android.library'
+      id 'maven-publish'
+}
+
+ext {
+    PUBLISH_GROUP_ID = 'com.github.enahum'
+    PUBLISH_VERSION = "3.2.0-pdfFile.1"
+    PUBLISH_ARTIFACT_ID = 'android-pdf-viewer'
+}
 
 android {
     compileSdkVersion rootProject.tools.compileSdk
@@ -7,9 +16,15 @@ android {
         minSdkVersion rootProject.tools.minSdk
         targetSdkVersion rootProject.tools.targetSdk
         versionCode 1
-        versionName "${rootProject.tools.versionName}"
+        versionName PUBLISH_VERSION
     }
 
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+            withJavadocJar()
+        }
+    }
 }
 
 dependencies {
@@ -18,10 +33,17 @@ dependencies {
 }
 
 // Maven Publishing
-ext {
-    PUBLISH_GROUP_ID = 'com.github.mhiew'
-    PUBLISH_VERSION = "${rootProject.tools.versionName}"
-    PUBLISH_ARTIFACT_ID = 'android-pdf-viewer'
-}
+  publishing {
+      publications {
+          release(MavenPublication) {
+              groupId = PUBLISH_GROUP_ID
+              artifactId = PUBLISH_ARTIFACT_ID
+              version = PUBLISH_VERSION
 
-apply from: "${rootProject.projectDir}/android-pdf-viewer/publish-mavencentral.gradle"
+              afterEvaluate {
+                  from components.release
+              }
+          }
+      }
+  }
+
